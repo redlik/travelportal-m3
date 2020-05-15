@@ -1,9 +1,11 @@
-from application import app
+from application import app, database
 from flask import render_template, url_for
 from slugify import slugify
 
 @app.route("/")
 def index():
+    user_collection = database.db.users
+    user_collection.insert({'name': 'John'})
     return render_template("index.html", page_title="Welcome to Travelbuddy portal")
 
 @app.route("/tour")
