@@ -1,5 +1,5 @@
 from application import app, database
-from flask import render_template, url_for, request, redirect, flash
+from flask import render_template, url_for, request, redirect, flash, session
 from slugify import slugify
 from application.forms import LoginForm, RegistrationForm
 
@@ -25,6 +25,8 @@ def register():
             if not existing_user:
                 user = {"first_name": first_name, "email": email}
                 users.insert(user)
+                session["email"] = email
+                session["name"] = first_name
                 return redirect(url_for('index'))
             else:
                 flash('User with this email already exists. Try a different one', 'error')
