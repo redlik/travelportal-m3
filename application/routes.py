@@ -49,3 +49,8 @@ def login():
                 session["name"] = first_name
                 return redirect(url_for('index'))
     return render_template('login.html', page_title="Login to add, edit or remove your tours", form=form, login_page=True)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
