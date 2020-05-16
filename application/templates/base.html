@@ -32,6 +32,7 @@
                         <a class="nav-link {% if tours_page %} active {% endif %}px-lg-3"
                             href="{{ url_for('tours') }}">Browse Tours</a>
                     </li>
+                    {% if not session["email"] %}
                     <li class="nav-item">
                         <a class="nav-link {% if register_page %} active {% endif %}px-lg-3"
                             href="{{ url_for('register') }}">Register</a>
@@ -40,6 +41,17 @@
                         <a class="nav-link {% if login_page %} active {% endif %}pr-lg-3"
                             href="{{ url_for('login') }}">Login</a>
                     </li>
+                    {% endif %}
+                    {% if session["email"]: %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if login_page %} active {% endif %}pr-lg-3"
+                            href="{{ url_for('login') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pr-lg-3"
+                            href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
