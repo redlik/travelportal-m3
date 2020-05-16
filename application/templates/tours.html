@@ -1,6 +1,71 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Browse Tours</h1>
-<p>User created!</p>
+<div class="row">
+    <div class="col-3">
+        <h5>View Tours by Country</h5>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#">Ireland</a>
+            <a class="nav-link" href="#">England</a>
+            <a class="nav-link" href="#">Spain</a>
+            <a class="nav-link" href="#">Italy</a>
+            <a class="nav-link" href="#">France</a>
+            <a class="nav-link" href="#">United States</a>
+        </nav>
+        <hr>
+        <h5>View Tours by Length</h5>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#">1 Day Tours</a>
+            <a class="nav-link" href="#">2 Days Tours</a>
+            <a class="nav-link" href="#">3 Days Tours</a>
+            <a class="nav-link" href="#">5 Days Tours</a>
+            <a class="nav-link" href="#">7 Days Tours</a>
+        </nav>
+
+    </div>
+    <div class="col-9">
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="mt-4 mb-3">Most popular locations this month</h3>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <img src="assets/images/london-card.jpg" class="card-img-top" alt="London">
+                        <div class="card-body">
+                            <h5 class="card-title">London</h5>
+                            <h6 class="card-subtitle mb-2">Visit London Museums with a History Ph.D</h6>
+                            <p class="card-text">3 Days Experience<br />From €395/person</p>
+                            <a href="london.html" class="btn btn-danger">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <img src="assets/images/madrid-card.jpg" class="card-img-top" alt="Madrid">
+                        <div class="card-body">
+                            <h5 class="card-title">Madrid</h5>
+                            <h6 class="card-subtitle mb-2">Discover the World of World Famous Iberico Ham</h6>
+                            <p class="card-text">5 Days Experience<br />From €495/person</p>
+                            <a href="madrid.html" class="btn btn-danger">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <img src="assets/images/rome-card.jpg" class="card-img-top" alt="Rome">
+                        <div class="card-body">
+                            <h5 class="card-title">Rome</h5>
+                            <h6 class="card-subtitle mb-2">Pasta Making Experience with Wine Tasting</h6>
+                            <p class="card-text">4 Days Experience<br />From €465/person</p>
+                            <a href="rome.html" class="btn btn-danger">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5">
+        </section>
+
+    </div>
+</div>
 {% endblock %}
