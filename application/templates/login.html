@@ -2,5 +2,29 @@
 
 {% block content %}
 <h1>Login</h1>
-<p>User created!</p>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form name="login" action="" method="POST">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.email.label }}<br> {{ form.email(size=35) }}
+            </p>
+            <br class="clear">
+            <input class="btn-submit" type="submit" name="submit" value="Login">
+        </form>
+        <div class="mt-4">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
 {% endblock %}
