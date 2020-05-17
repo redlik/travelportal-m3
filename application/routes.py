@@ -13,6 +13,10 @@ def index():
 def tours():
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours_page=True)
 
+@app.route('/add-tour')
+def add_tour():
+    return render_template('add-tour.html', page_title="Add New Tour")
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     users = database.db.users
