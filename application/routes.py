@@ -1,7 +1,7 @@
 from application import app, database
 from flask import render_template, url_for, request, redirect, flash, session
+from application.forms import LoginForm, RegistrationForm, InsertTourForm
 from slugify import slugify
-from application.forms import LoginForm, RegistrationForm
 
 @app.route("/")
 def index():
@@ -11,13 +11,36 @@ def index():
 
 @app.route('/tours')
 def tours():
-    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours_page=True)
+    tours_list = database.db.tours.find().sort('tour_length')
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
 
-@app.route('/add-tour')
+@app.route('/add-tour', methods=['GET', 'POST'])
 def add_tour():
-    return render_template('add-tour.html', page_title="Add New Tour")
+    tours = database.db.tours
+    form = InsertTourForm()
+    if form.validate_on_submit():
+        tour_name = form.tour_name.data
+        tour_length = form.tour_length.data
+        tour_slug = slugify(tour_name + "-" + tour_length)
+        tour_country = form.tour_country.data
+        tour_price = int(form.tour_price.data)
+        tour_description = form.tour_description.data
+        tour_photo1 = form.tour_photo1.data
+        tour_photo2 = form.tour_photo2.data
+        tour_photo3 = form.tour_photo3.data
+        tour_data = {"tour_name": tour_name, "tour_slug": tour_slug, "tour_length": tour_length, "tour_country": tour_country, "tour_price": tour_price, "tour_description": tour_description, "tour_photo1": tour_photo1, "tour_photo2": tour_photo2,"tour_photo3": tour_photo3, "owner": session["email"]}
+        tours.insert(tour_data)
+        return redirect(url_for('index'))
+    return render_template('add-tour.html', form=form, page_title="Add New Tour")
 
+@app.route('/tour/<tour_slug>')
+def tour(tour_slug):
+    tours = database.db.tours
+    tour = tours.find_one({"tour_slug":tour_slug})
+    return render_template('tour.html', tour=tour)
 @app.route('/register', methods=['GET', 'POST'])
+
+
 def register():
     users = database.db.users
     form=RegistrationForm()
