@@ -15,11 +15,11 @@ class RegistrationForm(FlaskForm):
 
 class InsertTourForm(FlaskForm):
     tour_name = StringField("Tour Name", validators=[DataRequired(), Length(min=2, max=25, message="You can use maximum 25 characters")])
-    tour_length = SelectField('Tour Length', choices=[('1-day', '1 Day Tour'),('2-day', '2 Days Tour'),('3-day', '3 Days Tour'),('5-day', '5 Days Tour'),('7-day', '7 Days Tour')], validators=[DataRequired()])
+    tour_length = SelectField('Tour Length', choices=[('1 Day', '1 Day Tour'),('2 Days', '2 Days Tour'),('3 Days', '3 Days Tour'),('5 Days', '5 Days Tour'),('7 Days', '7 Days Tour')], validators=[DataRequired()])
     tour_country = SelectField('Tour Location', choices=[('france', 'France'),('ireland', 'Ireland'), ('italy', 'Italy'),('spain', 'Spain'), ('uk', 'United Kingdom'),('us', 'United States')], validators=[DataRequired()])
     tour_price = DecimalField('Tour price', places=2, validators=[DataRequired()])
     tour_description = TextAreaField('Tour Description', validators=[DataRequired()])
-    tour_photo1 = URLField('Link to photo 1', validators=[DataRequired(), ActiveUrl()])
-    tour_photo2 = URLField('Link to photo 2', validators=[DataRequired(), ActiveUrl()])
-    tour_photo3 = URLField('Link to photo 3', validators=[DataRequired(), ActiveUrl()])
+    tour_photo1 = StringField('Photo ID 1', validators=[DataRequired(),Length(min=11, max=11)])
+    tour_photo2 = StringField('Photo ID 2', validators=[DataRequired(),Length(min=11, max=11)])
+    tour_photo3 = StringField('Photo ID 3', validators=[DataRequired(),Length(min=11, max=11)])
     submit = SubmitField("Add Tour")
