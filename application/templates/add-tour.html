@@ -6,7 +6,7 @@
     <div class="col-md-6 offset-md-3">
         <h1>Add New Tour</h1>
         {% if session['email']: %}
-        <form name="login" action="" method="POST">
+        <form name="tours" action="" method="POST">
             {{ form.hidden_tag() }}
             <p>
                 {{ form.tour_name.label }}<br> {{ form.tour_name(size=35, placeholder="Tour Name") }}
@@ -27,16 +27,15 @@
             <div class="bg-light p-2">
                 <h5>Tour photos</h5>
                 <p>For the purpose of this demo project we only allow links from <a href="https://unsplash.com"
-                        target="_blank">Unsplash</a>. Only URLs from their
-                    gallery will be accepted. Thank you.</p>
+                        target="_blank">Unsplash</a>. Please insert photo id's only -> unsplash.com/photos/<strong>5GsbwkrCfuM</strong> in the boxes below. Thank you.</p>
                 <p>
-                    {{ form.tour_photo1.label }}<br> {{ form.tour_photo1(placeholder="Link example: https://unsplash.com/photos/5GsbwkrCfuM", size=50)}}
+                    {{ form.tour_photo1.label }}<br> {{ form.tour_photo1(placeholder="Photo ID: 5GsbwkrCfuM", size=50)}}
                 </p>
                 <p>
-                    {{ form.tour_photo2.label }}<br> {{ form.tour_photo2(size=50)}}
+                    {{ form.tour_photo2.label }}<br> {{ form.tour_photo2(placeholder="Photo ID:", size=50)}}
                 </p>
                 <p>
-                    {{ form.tour_photo3.label }}<br> {{ form.tour_photo3(size=50)}}
+                    {{ form.tour_photo3.label }}<br> {{ form.tour_photo3(placeholder="Photo ID:", size=50)}}
                 </p>
             </div>
             <br class="clear">
