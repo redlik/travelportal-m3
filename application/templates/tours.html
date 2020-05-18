@@ -24,44 +24,23 @@
 
     </div>
     <div class="col-9">
+        <h3 class="mt-4 mb-3">Most popular locations this month</h3>
         <section class="container">
             <div class="row">
-                <div class="col-12">
-                    <h3 class="mt-4 mb-3">Most popular locations this month</h3>
-                </div>
+                {% for single_tour in tours %}
                 <div class="col-md-4 mb-4">
                     <div class="card shadow">
-                        <img src="assets/images/london-card.jpg" class="card-img-top" alt="London">
+                        <img src="https://source.unsplash.com/{{ single_tour["tour_photo1"] }}/253x160" class="card-img-top" alt="London">
                         <div class="card-body">
-                            <h5 class="card-title">London</h5>
+                            <h5 class="card-title">{{ single_tour["tour_name"]}}</h5>
                             <h6 class="card-subtitle mb-2">Visit London Museums with a History Ph.D</h6>
-                            <p class="card-text">3 Days Experience<br />From €395/person</p>
-                            <a href="london.html" class="btn btn-danger">View Details</a>
+                            <p class="card-text">{{ single_tour["tour_length"] }}<br />From €{{ (single_tour["tour_price"]) }}/person</p>
+                            <a href="{{ url_for('tour', tour_slug=single_tour['tour_slug']) }}" class="btn btn-danger">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="assets/images/madrid-card.jpg" class="card-img-top" alt="Madrid">
-                        <div class="card-body">
-                            <h5 class="card-title">Madrid</h5>
-                            <h6 class="card-subtitle mb-2">Discover the World of World Famous Iberico Ham</h6>
-                            <p class="card-text">5 Days Experience<br />From €495/person</p>
-                            <a href="madrid.html" class="btn btn-danger">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="assets/images/rome-card.jpg" class="card-img-top" alt="Rome">
-                        <div class="card-body">
-                            <h5 class="card-title">Rome</h5>
-                            <h6 class="card-subtitle mb-2">Pasta Making Experience with Wine Tasting</h6>
-                            <p class="card-text">4 Days Experience<br />From €465/person</p>
-                            <a href="rome.html" class="btn btn-danger">View Details</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+                
             </div>
             <hr class="my-5">
         </section>
