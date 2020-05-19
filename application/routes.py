@@ -77,6 +77,18 @@ def login():
                 return redirect(url_for('index'))
     return render_template('login.html', page_title="Login to add, edit or remove your tours", form=form, login_page=True)
 
+@app.route('/dashboard')
+def dashboard():
+    users = database.db.users
+    tours = database.db.tours
+    if session["email"]:
+        owner = session["email"]
+        user_tours = tours.find({"owner":owner})
+        return render_template('dashboard.html', page_title="TravelBuddy Host Dashboard", tours=user_tours)
+    else:
+        return redirect('login')
+
+
 @app.route('/logout')
 def logout():
     session.clear()
