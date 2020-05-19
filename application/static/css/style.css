@@ -7,3 +7,10 @@ body {
   line-height: 1.5;
   color: #858796;
 }
+.dashboard-row {
+  padding: 15px;
+}
+.dashboard-row:nth-child(even)
+{
+  background-color: #f0f0f0;
+}
