@@ -5,8 +5,6 @@ from slugify import slugify
 
 @app.route("/")
 def index():
-    # user_collection = database.db.users
-    # user_collection.insert({'name': 'John'})
     return render_template("index.html", page_title="Welcome to Travelbuddy portal", home_page=True)
 
 @app.route('/tours')
@@ -32,6 +30,12 @@ def add_tour():
         tours.insert(tour_data)
         return redirect(url_for('index'))
     return render_template('add-tour.html', form=form, page_title="Add New Tour")
+
+@app.route('/delete/<tour_slug>')
+def delete_tour(tour_slug):
+    tours = database.db.tours
+    tours.delete_one({"tour_slug": tour_slug})
+    return redirect(url_for('dashboard'))
 
 @app.route('/tour/<tour_slug>')
 def tour(tour_slug):
@@ -86,7 +90,7 @@ def dashboard():
         user_tours = tours.find({"owner":owner})
         return render_template('dashboard.html', page_title="TravelBuddy Host Dashboard", tours=user_tours)
     else:
-        return redirect('login')
+        return redirect(url_for('login'))
 
 
 @app.route('/logout')
