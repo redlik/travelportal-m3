@@ -15,7 +15,7 @@ def tours():
 @app.route('/tours/location/<country>')
 def tours_location(country):
     tours_list = database.db.tours.find({"tour_country": country})
-    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, country=country, tours_page=True)
 
 
 
