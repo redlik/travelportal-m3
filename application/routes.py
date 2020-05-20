@@ -83,9 +83,8 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    users = database.db.users
     tours = database.db.tours
-    if session["email"]:
+    if 'email' in session:
         owner = session["email"]
         user_tours = tours.find({"owner":owner})
         return render_template('dashboard.html', page_title="TravelBuddy Host Dashboard", tours=user_tours)
