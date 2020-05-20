@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-3 sidebar">
+    <div class="col-md-3 sidebar">
         <h5>View Tours by Country</h5>
         <nav class="nav flex-column">
             <a class="nav-link {% if country =='france' %} active {% endif %}" href="{{ url_for('tours_location', country='france') }}">France</a>
@@ -28,8 +28,12 @@
 
 
     </div>
-    <div class="col-9">
-        <h3 class="mt-4 mb-3">Most popular locations this month</h3>
+    <div class="col-md-9">
+        {% if country: %}
+        <h3>View tours located in {{ country|capitalize }}</h3>
+        {% else: %}
+        <h3 class="mt-4 mb-3">Most popular tours on Travelbuddy</h3>
+        {% endif %}
         <section class="container">
             <div class="row">
                 {% for single_tour in tours %}
