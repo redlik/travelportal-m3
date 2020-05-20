@@ -78,7 +78,7 @@ def login():
                 first_name = existing_user["first_name"]
                 session["email"] = email
                 session["name"] = first_name
-                return redirect(url_for('index'))
+                return redirect(url_for('dashboard'))
     return render_template('login.html', page_title="Login to add, edit or remove your tours", form=form, login_page=True)
 
 @app.route('/dashboard')
