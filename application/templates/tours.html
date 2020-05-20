@@ -5,12 +5,12 @@
     <div class="col-3">
         <h5>View Tours by Country</h5>
         <nav class="nav flex-column">
-            <a class="nav-link active" href="#">Ireland</a>
-            <a class="nav-link" href="#">England</a>
-            <a class="nav-link" href="#">Spain</a>
-            <a class="nav-link" href="#">Italy</a>
-            <a class="nav-link" href="#">France</a>
-            <a class="nav-link" href="#">United States</a>
+            <a class="nav-link" href="{{ url_for('tours_location', country='ireland') }}">Ireland</a>
+            <a class="nav-link" href="{{ url_for('tours_location', country='uk') }}">England</a>
+            <a class="nav-link" href="{{ url_for('tours_location', country='spain') }}">Spain</a>
+            <a class="nav-link" href="{{ url_for('tours_location', country='italy') }}">Italy</a>
+            <a class="nav-link" href="{{ url_for('tours_location', country='france') }}">France</a>
+            <a class="nav-link" href="{{ url_for('tours_location', country='us') }}">United States</a>
         </nav>
         <hr>
         <h5>View Tours by Length</h5>
@@ -21,6 +21,11 @@
             <a class="nav-link" href="#">5 Days Tours</a>
             <a class="nav-link" href="#">7 Days Tours</a>
         </nav>
+        <hr>
+        <nav class="nav flex-column">
+            <a class="nav-link" href="{{ url_for('tours') }}">View All</a>
+        </nav>
+
 
     </div>
     <div class="col-9">
