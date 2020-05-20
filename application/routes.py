@@ -12,6 +12,13 @@ def tours():
     tours_list = database.db.tours.find().sort('tour_length')
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
 
+@app.route('/tours/location/<country>')
+def tours_location(country):
+    tours_list = database.db.tours.find({"tour_country": country})
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
+
+
+
 @app.route('/add-tour', methods=['GET', 'POST'])
 def add_tour():
     tours = database.db.tours
