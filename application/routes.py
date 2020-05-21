@@ -2,6 +2,7 @@ from application import app, database
 from flask import render_template, url_for, request, redirect, flash, session
 from application.forms import LoginForm, RegistrationForm, InsertTourForm
 from slugify import slugify
+from bson import ObjectId
 
 
 @app.route("/")
@@ -48,16 +49,16 @@ def add_tour():
         return redirect(url_for('index'))
     return render_template('add-tour.html', form=form, page_title="Add New Tour")
 
-@app.route('/delete/<tour_slug>')
-def delete_tour(tour_slug):
+@app.route('/delete/<tour_id>')
+def delete_tour(tour_id):
     tours = database.db.tours
-    tours.delete_one({"tour_slug": tour_slug})
+    tours.delete_one({"_id": ObjectId(tour_id)})
     return redirect(url_for('dashboard'))
 
-@app.route('/edit/<tour_slug>')
-def edit_tour(tour_slug):
+@app.route('/edit/<tour_id>')
+def edit_tour(tour_id):
     if 'email' in session:
-        tour = database.db.tours.find_one({'tour_slug': tour_slug})
+        tour = database.db.tours.find_one({"_id": tour_id})
         form = InsertTourForm()
         return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, form=form)
     else:
