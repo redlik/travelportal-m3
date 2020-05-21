@@ -59,7 +59,7 @@ def edit_tour(tour_slug):
     if 'email' in session:
         tour = database.db.tours.find_one({'tour_slug': tour_slug})
         form = InsertTourForm()
-        return render_template('edit.html', page_title="Edit Tour", tour=tour, form=form)
+        return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, form=form)
     else:
         return redirect('login')
 
