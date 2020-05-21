@@ -3,19 +3,29 @@ from flask import render_template, url_for, request, redirect, flash, session
 from application.forms import LoginForm, RegistrationForm, InsertTourForm
 from slugify import slugify
 
+
 @app.route("/")
 def index():
     return render_template("index.html", page_title="Welcome to Travelbuddy portal", home_page=True)
+
 
 @app.route('/tours')
 def tours():
     tours_list = database.db.tours.find().sort('tour_length')
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
 
+
 @app.route('/tours/location/<country>')
 def tours_location(country):
     tours_list = database.db.tours.find({"tour_country": country})
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, country=country, tours_page=True)
+
+
+@app.route('/tours/length/<length>')
+def tours_length(length):
+    slug_length = slugify(length)
+    tours_list = database.db.tours.find({"tour_length": length})
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, length=length, tours_page=True)
 
 
 
@@ -43,6 +53,15 @@ def delete_tour(tour_slug):
     tours = database.db.tours
     tours.delete_one({"tour_slug": tour_slug})
     return redirect(url_for('dashboard'))
+
+@app.route('/edit/<tour_slug>')
+def edit_tour(tour_slug):
+    if 'email' in session:
+        tour = database.db.tours.find_one({'tour_slug': tour_slug})
+        form = InsertTourForm()
+        return render_template('edit.html', page_title="Edit Tour", tour=tour, form=form)
+    else:
+        return redirect('login')
 
 @app.route('/tour/<tour_slug>')
 def tour(tour_slug):
