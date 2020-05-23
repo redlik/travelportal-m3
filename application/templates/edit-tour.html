@@ -7,11 +7,11 @@
         <h1>Edit tour details</h1>
         {% if session['email'] == tour.owner %}
         <form name="edit_tour" action="" method="POST">
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="tourName">Tour name:</label>
-                <input type="email" class="form-control" id="tourName" value={{ tour.tour_name }}>
+                <input type="email" class="form-control" id="tourName" value={{ tour.tour_name }} required>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="tourLocation">Tour location:</label>
                 <select class="form-control" id="tourLocation">
                     <option value="" disabled selected>Choose Country</option>
@@ -42,27 +42,27 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">€</div>
                 </div>
-                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_price }}>
+                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_price }} required>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="tourDescription">Tour Description</label>
-                <textarea class="form-control" id="tourDescription" rows="10">{{ tour.tour_description }}</textarea>
+                <textarea class="form-control" id="tourDescription" rows="10" required>{{ tour.tour_description }}</textarea>
             </div>
-            <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group mb-4 mr-sm-2">
                 <label for="tourPrice" class="col-12 px-0">Unsplash ID for 1st photo:</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">/photos/</div>
                 </div>
-                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_photo1 }}>
+                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_photo1 }} required>
             </div>
-            <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group mb-4 mr-sm-2">
                 <label for="tourPrice" class="col-12 px-0">Unsplash ID for 2nd photo:</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">/photos/</div>
                 </div>
                 <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_photo2 }}>
             </div>
-            <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group mb-5 mr-sm-2">
                 <label for="tourPrice" class="col-12 px-0">Unsplash ID for 3rd photo:</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">/photos/</div>
