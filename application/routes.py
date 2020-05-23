@@ -58,9 +58,10 @@ def delete_tour(tour_id):
 @app.route('/edit/<tour_id>')
 def edit_tour(tour_id):
     if 'email' in session:
-        tour = database.db.tours.find_one({"_id": tour_id})
-        form = InsertTourForm()
-        return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, form=form)
+        tour = database.db.tours.find_one({"_id": ObjectId(tour_id)})
+        countries = database.db.countries.find()
+        tour_length = database.db.tour_length.find()
+        return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, countries=countries, tour_length=tour_length)
     else:
         return redirect('login')
 
