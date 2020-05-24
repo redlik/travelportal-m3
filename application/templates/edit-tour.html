@@ -9,7 +9,7 @@
         <form name="edit_tour" action="{{ url_for('update', tour_id=tour._id) }}" method="POST">
             <div class="form-group mb-4">
                 <label for="tourName">Tour name:</label>
-                <input type="text" class="form-control" id="tourName" name="tourName" value={{ tour.tour_name }} required>
+                <input type="text" class="form-control" id="tourName" name="tourName" value="{{ tour.tour_name }}" required>
             </div>
             <div class="form-group mb-4">
                 <label for="tourLocation">Tour location:</label>
