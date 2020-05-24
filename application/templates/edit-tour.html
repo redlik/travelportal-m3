@@ -6,14 +6,14 @@
     <div class="col-md-6 offset-md-3">
         <h1>Edit tour details</h1>
         {% if session['email'] == tour.owner %}
-        <form name="edit_tour" action="" method="POST">
+        <form name="edit_tour" action="{{ url_for('update', tour_id=tour._id) }}" method="POST">
             <div class="form-group mb-4">
                 <label for="tourName">Tour name:</label>
-                <input type="email" class="form-control" id="tourName" value={{ tour.tour_name }} required>
+                <input type="text" class="form-control" id="tourName" name="tourName" value={{ tour.tour_name }} required>
             </div>
             <div class="form-group mb-4">
                 <label for="tourLocation">Tour location:</label>
-                <select class="form-control" id="tourLocation">
+                <select class="form-control" id="tourLocation" name="tourLocation">
                     <option value="" disabled selected>Choose Country</option>
                     {% for country in countries %}
                     {% if country.country == tour.tour_country %}
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group mb-4">
                 <label for="tourLength">Tour length:</label>
-                <select class="form-control" id="tourLength">
+                <select class="form-control" id="tourLength" name="tourLength">
                     <option value="" disabled selected>Tour Length</option>
                     {% for length in tour_length %}
                     {% if length.tour_length == tour.tour_length %}
@@ -42,32 +42,32 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">€</div>
                 </div>
-                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_price }} required>
+                <input type="text" class="form-control" id="tourPrice" name="tourPrice" value={{ tour.tour_price }} >
             </div>
             <div class="form-group mb-4">
                 <label for="tourDescription">Tour Description</label>
-                <textarea class="form-control" id="tourDescription" rows="10" required>{{ tour.tour_description }}</textarea>
+                <textarea class="form-control" id="tourDescription" name="tourDescription" rows="10" required>{{ tour.tour_description }}</textarea>
             </div>
             <div class="input-group mb-4 mr-sm-2">
-                <label for="tourPrice" class="col-12 px-0">Unsplash ID for 1st photo:</label>
+                <label for="tourPhoto1" class="col-12 px-0">Unsplash ID for 1st photo:</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">/photos/</div>
                 </div>
-                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_photo1 }} required>
+                <input type="text" class="form-control" id="tourPhoto1" name="tourPhoto1" value={{ tour.tour_photo1 }}>
             </div>
             <div class="input-group mb-4 mr-sm-2">
-                <label for="tourPrice" class="col-12 px-0">Unsplash ID for 2nd photo:</label>
+                <label for="tourPhoto2" class="col-12 px-0">Unsplash ID for 2nd photo:</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">/photos/</div>
                 </div>
-                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_photo2 }}>
+                <input type="text" class="form-control" id="tourPhoto2" name="tourPhoto2" value={{ tour.tour_photo2 }}>
             </div>
             <div class="input-group mb-5 mr-sm-2">
-                <label for="tourPrice" class="col-12 px-0">Unsplash ID for 3rd photo:</label>
+                <label for="tourPhoto3" class="col-12 px-0">Unsplash ID for 3rd photo:</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">/photos/</div>
                 </div>
-                <input type="text" class="form-control" id="tourPrice" value={{ tour.tour_photo3 }}>
+                <input type="text" class="form-control" id="tourPhoto3" name="tourPhoto3" value={{ tour.tour_photo3 }}>
             </div>
             <input class="btn btn-submit btn-success" type="submit" name="submit" value="Update item">
         </form>
