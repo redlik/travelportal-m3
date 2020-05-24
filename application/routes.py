@@ -65,6 +65,26 @@ def edit_tour(tour_id):
     else:
         return redirect('login')
 
+@app.route('/update/<tour_id>', methods=['POST'])
+def update(tour_id):
+    tours = database.db.tours
+    existing_tour = tours.find({'_id': ObjectId(tour_id)})
+    tours.update({'_id': ObjectId(tour_id)},
+    {
+        'tour_name': request.form.get('tourName'),
+        'tour_length': int(request.form.get('tourLength')),
+        'tour_slug': slugify(request.form.get('tourName') + "-" + str(request.form.get('tourLength')) + "-" + 'days'),
+        'tour_country': request.form.get('tourLocation'),
+        'tour_price': request.form.get('tourPrice'),
+        'tour_description': request.form.get('tourDescription'),
+        'tour_photo1': request.form.get('tourPhoto1'),
+        'tour_photo2': request.form.get('tourPhoto2'),
+        'tour_photo3': request.form.get('tourPhoto3'),
+        'owner': session["email"]
+    },
+    upsert=True)
+    return redirect(url_for('dashboard'))
+
 @app.route('/tour/<tour_slug>')
 def tour(tour_slug):
     tours = database.db.tours
