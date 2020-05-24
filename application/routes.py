@@ -7,7 +7,8 @@ from bson import ObjectId
 
 @app.route("/")
 def index():
-    return render_template("index.html", page_title="Welcome to Travelbuddy portal", home_page=True)
+    tours = database.db.tours.find()
+    return render_template("index.html", page_title="Welcome to Travelbuddy portal", tours=tours, home_page=True)
 
 
 @app.route('/tours')
