@@ -14,10 +14,10 @@
 </head>
 
 <body>
-    <nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="sticky-top navbar navbar-expand-lg header-bar">
         <div class="container">
             <a class="navbar-brand" href=" {{ url_for('index') }}">
-                <img src="assets/images/tb-logo.svg" class="align-top img-fluid pl-md-5 logo-image"
+                <img src="{{ url_for('static', filename='images/tb-logo.svg')}}" class="align-top img-fluid pl-md-5 logo-image"
                     alt="TravelBuddy logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
