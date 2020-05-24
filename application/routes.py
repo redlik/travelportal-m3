@@ -57,12 +57,38 @@ def delete_tour(tour_id):
 
 @app.route('/edit/<tour_id>')
 def edit_tour(tour_id):
+    tour = database.db.tours.find_one({"_id": ObjectId(tour_id)})
     if 'email' in session:
-        tour = database.db.tours.find_one({"_id": tour_id})
-        form = InsertTourForm()
-        return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, form=form)
+        if session['email'] == tour['owner']:    
+            countries = database.db.countries.find()
+            tour_length = database.db.tour_length.find()
+            return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, countries=countries, tour_length=tour_length)
     else:
-        return redirect('login')
+        return redirect(url_for('login'))
+
+@app.route('/update/<tour_id>', methods=['POST'])
+def update(tour_id):
+    tours = database.db.tours
+    existing_tour = tours.find_one({'_id': ObjectId(tour_id)})
+    if 'email' in session:
+        if session['email'] == existing_tour['owner']:
+            tours.update({'_id': ObjectId(tour_id)},
+            {
+                'tour_name': request.form.get('tourName'),
+                'tour_length': int(request.form.get('tourLength')),
+                'tour_slug': slugify(request.form.get('tourName') + "-" + str(request.form.get('tourLength')) + "-" + 'days'),
+                'tour_country': request.form.get('tourLocation'),
+                'tour_price': request.form.get('tourPrice'),
+                'tour_description': request.form.get('tourDescription'),
+                'tour_photo1': request.form.get('tourPhoto1'),
+                'tour_photo2': request.form.get('tourPhoto2'),
+                'tour_photo3': request.form.get('tourPhoto3'),
+                'owner': session["email"]
+            },
+            upsert=True)
+            return redirect(url_for('dashboard'))
+    else: 
+        return redirect(url_for('dashboard'))
 
 @app.route('/tour/<tour_slug>')
 def tour(tour_slug):
