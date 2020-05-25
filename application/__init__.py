@@ -5,9 +5,9 @@ from flask_pymongo import PyMongo
 app = Flask(__name__)
 # app.config.from_pyfile('config.py')
 
-app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "54321abcde")
 
 database = PyMongo(app)
 
