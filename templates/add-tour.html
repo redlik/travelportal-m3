@@ -1,80 +1,77 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h1>Add New Tour</h1>
-            <div class="mt-4">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    <ul class="flashes">
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Add New Tour</h1>
+        <div class="mt-4">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-                {% endif %}
-                {% endwith %}
-            {% if session['email']: %}
-            <form name="tours" action="" method="POST">
-                {{ form.hidden_tag() }}
-                <p>
-                    {{ form.tour_name.label }}<br> {{ form.tour_name(size=35, placeholder="Tour Name") }}
-                </p>
-                <p>
-                    {{ form.tour_length.label }}<br> {{ form.tour_length(placeholder='Select Length')}}
-                </p>
-                <p>
-                    {{ form.tour_country.label }}<br> {{ form.tour_country(placeholder='Select Location')}}
-                </p>
-                <p>
-                    {{ form.tour_price.label }}<br>
-                    {{ form.tour_price(size=35, placeholder='Insert figure only, no need for currency symbol') }}
-                </p>
-                <p>
-                    {{ form.tour_description.label }}<br> {{ form.tour_description(rows='10',cols='35') }}
-                </p>
-                <div class="bg-light p-2">
-                    <h5>Tour photos</h5>
-                    <p>For the purpose of this demo project we only allow links from <a href="https://unsplash.com"
-                            target="_blank">Unsplash</a>. Please insert photo id's only ->
-                        unsplash.com/photos/<strong>5GsbwkrCfuM</strong> in the boxes below. Thank you.</p>
-                    <p>
-                        {{ form.tour_photo1.label }}<br>
-                        {{ form.tour_photo1(placeholder="Photo ID: 5GsbwkrCfuM", size=50)}}
-                    </p>
-                    <p>
-                        {{ form.tour_photo2.label }}<br> {{ form.tour_photo2(placeholder="Photo ID:", size=50)}}
-                    </p>
-                    <p>
-                        {{ form.tour_photo3.label }}<br> {{ form.tour_photo3(placeholder="Photo ID:", size=50)}}
-                    </p>
-                </div>
-                <br class="clear">
-                <input class="btn-submit" type="submit" name="submit" value="Add Tour">
-            </form>
-            {% else: %}
-            <p>You need to be logged in as a host to add new tours. <br />Click here to <a
-                    href="{{ url_for('login') }}">log
-                    in</a>, or <a href="{{ url_for('register') }}">register</a> to create a new account.</p>
-            {% endif %}
-            <div class="mt-4">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    <ul class="flashes">
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            {% endif %}
-            {% endwith %}
         </div>
+        {% endif %}
+        {% endwith %}
+        {% if session['email']: %}
+        <form name="tours" action="" method="POST">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.tour_name.label }}<br> {{ form.tour_name(size=35, placeholder="Tour Name") }}
+            </p>
+            <p>
+                {{ form.tour_length.label }}<br> {{ form.tour_length(placeholder='Select Length')}}
+            </p>
+            <p>
+                {{ form.tour_country.label }}<br> {{ form.tour_country(placeholder='Select Location')}}
+            </p>
+            <p>
+                {{ form.tour_price.label }}<br>
+                {{ form.tour_price(size=35, placeholder='Insert figure only, no need for currency symbol') }}
+            </p>
+            <p>
+                {{ form.tour_description.label }}<br> {{ form.tour_description(rows='10',cols='35') }}
+            </p>
+            <div class="bg-light p-2">
+                <h5>Tour photos</h5>
+                <p>For the purpose of this demo project we only allow links from <a href="https://unsplash.com"
+                        target="_blank">Unsplash</a>. Please insert photo id's only ->
+                    unsplash.com/photos/<strong>5GsbwkrCfuM</strong> in the boxes below. Thank you.</p>
+                <p>
+                    {{ form.tour_photo1.label }}<br>
+                    {{ form.tour_photo1(placeholder="Photo ID: 5GsbwkrCfuM", size=50)}}
+                </p>
+                <p>
+                    {{ form.tour_photo2.label }}<br> {{ form.tour_photo2(placeholder="Photo ID:", size=50)}}
+                </p>
+                <p>
+                    {{ form.tour_photo3.label }}<br> {{ form.tour_photo3(placeholder="Photo ID:", size=50)}}
+                </p>
+            </div>
+            <br class="clear">
+            <input class="btn-submit" type="submit" name="submit" value="Add Tour">
+        </form>
+        {% else: %}
+        <p>You need to be logged in as a host to add new tours. <br />Click here to <a href="{{ url_for('login') }}">log
+                in</a>, or <a href="{{ url_for('register') }}">register</a> to create a new account.</p>
+        {% endif %}
+        <div class="mt-4">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
     </div>
 </div>
 {% endblock %}
