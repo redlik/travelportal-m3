@@ -60,7 +60,7 @@
             </div>
         </div>
     </nav>
-    <div class="container{% if request.path == url_for('index'): %}-fluid px-0{% endif %}">
+    <div class="container{% if request.path == url_for('index'): %}-fluid px-0{% else: %} mt-4 {% endif %}">
 
         {% block content %}
 
