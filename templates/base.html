@@ -60,13 +60,13 @@
             </div>
         </div>
     </nav>
-<div class="container{% if request.path == url_for('index'): %}-fluid {% endif %}">
+    <div class="container{% if request.path == url_for('index'): %}-fluid {% endif %}">
 
-    {% block content %}
+        {% block content %}
 
 
-    {% endblock %}
-</div>
+        {% endblock %}
+    </div>
     <footer 
         {% if request.path == url_for('index'): %} 
             class="footer"

@@ -1,39 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
+<div class="row">
 
-        <div class="col-md-6 offset-md-3">
-            <h1>Register</h1>
-            <p>Use the registration form to register as a host at TravelBuddy</p>
+    <div class="col-md-6 offset-md-3">
+        <h1>Register</h1>
+        <p>Use the registration form to register as a host at TravelBuddy</p>
 
-            <form name="register" action="" method="POST">
-                {{ form.hidden_tag() }}
-                <p>
-                    {{ form.first_name.label }}<br> {{ form.first_name(size=35) }}
-                </p>
-                <p>
-                    {{ form.email.label }}<br> {{ form.email(size=35) }}
-                </p>
-                <br class="clear">
-                <input class="btn-submit" type="submit" name="submit" value="Register">
-            </form>
-            <div class="mt-4">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    <ul class="flashes">
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <form name="register" action="" method="POST">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.first_name.label }}<br> {{ form.first_name(size=35) }}
+            </p>
+            <p>
+                {{ form.email.label }}<br> {{ form.email(size=35) }}
+            </p>
+            <br class="clear">
+            <input class="btn-submit" type="submit" name="submit" value="Register">
+        </form>
+        <div class="mt-4">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-            {% endif %}
-            {% endwith %}
         </div>
+        {% endif %}
+        {% endwith %}
     </div>
-</div>
 </div>
 {% endblock %}
