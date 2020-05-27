@@ -45,7 +45,7 @@ def add_tour():
     form = InsertTourForm()
     if form.validate_on_submit():
         tour_name = form.tour_name.data
-        tour_length = form.tour_length.data
+        tour_length = int(form.tour_length.data)
         tour_slug = slugify(tour_name + "-" + tour_length)
         tour_country = form.tour_country.data
         tour_price = int(form.tour_price.data)
