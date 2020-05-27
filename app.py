@@ -8,9 +8,9 @@ from bson import ObjectId
 app = Flask(__name__, instance_relative_config=True)
 # app.config.from_pyfile('config.py')
 
-app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
-app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "54321abcde")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 database = PyMongo(app)
 
@@ -159,3 +159,8 @@ def dashboard():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+if __name__ == "__main__":
+    app.run(host=os.getenv("IP", "0.0.0.0"),
+            port=int(os.getenv("PORT", "5000")),
+            debug=False)
