@@ -12,7 +12,7 @@ app = Flask(__name__)
 # app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 app.config["MONGO_DBNAME"] = 'flask_m3_project'
-app.config["MONGO_URI"] = 'mongodb+srv://db_adm1n:GxZ7W1YRcWKEeQvi@collagecluster-b6qtt.mongodb.net/test?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = 'mongodb+srv://db_adm1n:GxZ7W1YRcWKEeQvi@collagecluster-b6qtt.mongodb.net/flask_m3_project?retryWrites=true&w=majority'
 app.config['SECRET_KEY'] = '9nfZWZfPNd'
 
 database = PyMongo(app)
