@@ -66,10 +66,10 @@
 
     {% endblock %}
     <footer 
-        {% if request.path == url_for('login') or request.path == url_for('register'): %} 
-            class="footer-sticky"
-        {% else: %}
+        {% if request.path == url_for('index'): %} 
             class="footer"
+        {% else: %}
+            class="footer-sticky"
         {% endif %}>
         <div class="container">
             <div class="row align-items-center">

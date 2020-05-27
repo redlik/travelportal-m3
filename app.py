@@ -1,9 +1,18 @@
-from application import app, database
-from flask import render_template, url_for, request, redirect, flash, session
-from application.forms import LoginForm, RegistrationForm, InsertTourForm
+import os
+from flask import Flask, render_template, url_for, request, redirect, flash, session
+from flask_pymongo import PyMongo
+from forms import LoginForm, RegistrationForm, InsertTourForm
 from slugify import slugify
 from bson import ObjectId
 
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_pyfile('config.py')
+
+# app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
+# app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+# app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "54321abcde")
+
+database = PyMongo(app)
 
 @app.route("/")
 def index():
