@@ -5,8 +5,7 @@ from forms import LoginForm, RegistrationForm, InsertTourForm
 from slugify import slugify
 from bson import ObjectId
 
-app = Flask(__name__, instance_relative_config=True)
-# app.config.from_pyfile('config.py')
+app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
