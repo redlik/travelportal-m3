@@ -1,36 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9 shadow-sm">
+        <div class="row">
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="{{ url_for('static', filename='images/register_splash.jpg') }}">
+            </div>
+            <div class="col-lg-6 text-center p-3">
+                <h1>Welcome to TravelBuddy</h1>
+                <p class="mt-2">Use the registration form to register as a host at TravelBuddy</p>
 
-    <div class="col-md-6 offset-md-3">
-        <h1>Register</h1>
-        <p>Use the registration form to register as a host at TravelBuddy</p>
-
-        <form name="register" action="" method="POST">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.first_name.label }}<br> {{ form.first_name(size=35) }}
-            </p>
-            <p>
-                {{ form.email.label }}<br> {{ form.email(size=35) }}
-            </p>
-            <br class="clear">
-            <input class="btn-submit" type="submit" name="submit" value="Register">
-        </form>
-        <div class="mt-4">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div class="alert alert-danger" role="alert">
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
+                <form name="register" action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <p class="mt-4">
+                        {{ form.first_name.label }}&nbsp;&nbsp;{{ form.first_name(size=30) }}
+                    </p>
+                    <p class="mt-4">
+                        {{ form.email.label }}&nbsp;&nbsp;{{ form.email(size=30) }}
+                    </p>
+                    <br class="clear">
+                    <input class="btn btn-primary" type="submit" name="submit" value="Register">
+                </form>
+                <div class="mt-4">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="flashes">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% endwith %}
             </div>
         </div>
-        {% endif %}
-        {% endwith %}
     </div>
 </div>
 {% endblock %}
