@@ -44,7 +44,7 @@ def add_tour():
     tours = database.db.tours
     form = InsertTourForm()
     if form.validate_on_submit():
-        exisitng_tour = tours.find_one({'tour_name': form.tour_name.data})
+        existing_tour = tours.find_one({'tour_name': form.tour_name.data})
         if not existing_tour:
             tour_name = form.tour_name.data
             tour_length = int(form.tour_length.data)
