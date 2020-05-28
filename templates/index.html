@@ -33,7 +33,7 @@
                             </a>
                             <p class="card-text"><a href="{{ url_for('tours_length', length=single_tour['tour_length']) }}">
                                     {{ single_tour["tour_length"] }}
-                                    {% if int(single_tour["tour_length"]) < 2: %} day
+                                    {% if single_tour["tour_length"] < 2: %} day
                                     {% else: %}
                                         days
                                     {% endif %}</a>
