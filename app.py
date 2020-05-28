@@ -67,9 +67,10 @@ def add_tour():
                 "tour_photo3": tour_photo3, 
                 "owner": session["email"]}
             tours.insert(tour_data)
+            return redirect(url_for('dashboard'))
         else:
-            return flash('A tour with this name already exists, please modify the name')
-        return redirect(url_for('dashboard'))
+            flash('A tour with this name already exists, please modify the name')
+            return redirec(url_for('add_tour'))
     return render_template('add-tour.html', form=form, page_title="Add New Tour")
 
 
