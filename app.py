@@ -44,19 +44,21 @@ def add_tour():
     tours = database.db.tours
     form = InsertTourForm()
     if form.validate_on_submit():
-        tour_name = form.tour_name.data
-        tour_length = int(form.tour_length.data)
-        tour_slug = slugify(tour_name + "-" + str(tour_length) + "-day")
-        tour_country = form.tour_country.data
-        tour_price = int(form.tour_price.data)
-        tour_description = form.tour_description.data
-        tour_photo1 = form.tour_photo1.data
-        tour_photo2 = form.tour_photo2.data
-        tour_photo3 = form.tour_photo3.data
-        tour_data = {"tour_name": tour_name, "tour_slug": tour_slug, "tour_length": tour_length, "tour_country": tour_country, "tour_price": tour_price, "tour_description": tour_description, "tour_photo1": tour_photo1, "tour_photo2": tour_photo2,"tour_photo3": tour_photo3, "owner": session["email"]}
+        tour_data = {
+            "tour_name": form.tour_name.data,
+            "tour_length": int(form.tour_length.data),
+            "tour_slug": slugify(tour_name + "-" + str(tour_length) + "-day"),
+            "tour_country": form.tour_country.data,
+            "tour_price": int(form.tour_price.data),
+            "tour_description": form.tour_description.data,
+            "tour_photo1": form.tour_photo1.data,
+            "tour_photo2": form.tour_photo2.data,
+            "tour_photo3": form.tour_photo3.data,
+            "owner": session["email"]
+        }
         tours.insert(tour_data)
         return redirect(url_for('index'))
-    return render_template('add-tour.html', form=form, page_title="Add New Tour", sticky_footer=True)
+    return render_template('add-tour.html', form=form, page_title="Add New Tour")
 
 
 #Function to delete existing tour, checks for session data before deleting
