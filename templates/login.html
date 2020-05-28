@@ -18,7 +18,7 @@
                     <br class="clear">
                     <input class="btn-submit" type="submit" name="submit" value="Login">
                 </form>
-                <p>Dont' have the account? <a href="{{ urlf_for('register') }}">Register here</a></p>
+                <p>Dont' have the account? <a href="{{ url_for('register') }}">Register here</a></p>
                 <div class="mt-4">
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
