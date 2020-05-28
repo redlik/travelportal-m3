@@ -13,24 +13,25 @@ app.config['SECRET_KEY'] = '9nfZWZfPNd'
 
 database = PyMongo(app)
 
+# Main route displaying homepage
 @app.route("/")
 def index():
     tours = database.db.tours.find()
     return render_template("index.html", page_title="Welcome to Travelbuddy portal", tours=tours, home_page=True)
 
-
+#Page to display the list of tours sorted by the tour length (shortest to longest)
 @app.route('/tours')
 def tours():
     tours_list = database.db.tours.find().sort('tour_length')
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
 
-
+#Tours page filtered by the location of the tour, launched using location links on the sidebar
 @app.route('/tours/location/<country>')
 def tours_location(country):
     tours_list = database.db.tours.find({"tour_country": country})
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, country=country, tours_page=True)
 
-
+#Tours page filtered by the tour length, launched using links on the sidebar
 @app.route('/tours/length/<length>')
 def tours_length(length):
     slug_length = slugify(length)
@@ -38,7 +39,7 @@ def tours_length(length):
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, length=length, tours_page=True)
 
 
-
+#Page to display Add New Tour entry form
 @app.route('/add-tour', methods=['GET', 'POST'])
 def add_tour():
     tours = database.db.tours
@@ -58,12 +59,21 @@ def add_tour():
         return redirect(url_for('index'))
     return render_template('add-tour.html', form=form, page_title="Add New Tour")
 
+
+#Function to delete existing tour, checks for session data before deleting
 @app.route('/delete/<tour_id>')
 def delete_tour(tour_id):
     tours = database.db.tours
-    tours.delete_one({"_id": ObjectId(tour_id)})
+    existing_tour = tours.find_one({'_id': ObjectId(tour_id)})
+    if 'email' in session:
+        if session['email'] == existing_tour['owner']:
+            tours.delete_one({"_id": ObjectId(tour_id)})
+        else:
+            return redirect(url_for('login'))
     return redirect(url_for('dashboard'))
 
+
+#Page to display Edit Tour page, form filled with data drom database
 @app.route('/edit/<tour_id>')
 def edit_tour(tour_id):
     tour = database.db.tours.find_one({"_id": ObjectId(tour_id)})
@@ -75,6 +85,7 @@ def edit_tour(tour_id):
     else:
         return redirect(url_for('login'))
 
+#Function that takes the data from Edit form and saves changes back to database
 @app.route('/update/<tour_id>', methods=['POST'])
 def update(tour_id):
     tours = database.db.tours
@@ -99,14 +110,16 @@ def update(tour_id):
     else: 
         return redirect(url_for('dashboard'))
 
+#Page to display individual tours, uses slugify to create nice urls of each tour
 @app.route('/tour/<tour_slug>')
 def tour(tour_slug):
     tours = database.db.tours
     tour = tours.find_one({"tour_slug":tour_slug})
     return render_template('tour.html', tour=tour)
+
+
+#Page to display user registration page, saves data to database, checks if exisitng email used already
 @app.route('/register', methods=['GET', 'POST'])
-
-
 def register():
     users = database.db.users
     form=RegistrationForm()
@@ -126,6 +139,8 @@ def register():
                 return redirect(url_for('register'))
     return render_template('register.html', page_title="Register to become one of our hosts", form=form, register_page=True)
 
+
+#Page to display login form, checks if email exists in database already, re-directs to Dashboard page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     users = database.db.users
@@ -143,6 +158,7 @@ def login():
                 return redirect(url_for('dashboard'))
     return render_template('login.html', page_title="Login to add, edit or remove your tours", form=form, login_page=True)
 
+#Page to display logged in user tours
 @app.route('/dashboard')
 def dashboard():
     tours = database.db.tours
@@ -153,12 +169,13 @@ def dashboard():
     else:
         return redirect(url_for('login'))
 
-
+#Function to log user out, deletes session data
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 
+#
 if __name__ == "__main__":
     app.run(host=os.getenv("IP", "0.0.0.0"),
             port=int(os.getenv("PORT", "5000")),
