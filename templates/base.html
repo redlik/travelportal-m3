@@ -69,7 +69,11 @@
             {% endblock %}
         </div>
     </main>
+    {% if sticky_footer: %}
+    <footer class="footer-skicky">
+    {% else: %}
     <footer class="footer">
+    {% endif %}    
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-3 col-sm-12 text-center text-md-left">

@@ -23,19 +23,19 @@ def index():
 @app.route('/tours')
 def tours():
     tours_list = database.db.tours.find().sort('tour_length')
-    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True)
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, tours_page=True, sticky_footer=True)
 
 #Tours page filtered by the location of the tour, launched using location links on the sidebar
 @app.route('/tours/location/<country>')
 def tours_location(country):
     tours_list = database.db.tours.find({"tour_country": country})
-    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, country=country, tours_page=True)
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, country=country, tours_page=True, sticky_footer=True)
 
 #Tours page filtered by the tour length, launched using links on the sidebar
 @app.route('/tours/length/<length>-day')
 def tours_length(length):
     tours_list = database.db.tours.find({"tour_length": int(length)})
-    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, length=length, tours_page=True)
+    return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, length=length, tours_page=True, sticky_footer=True)
 
 
 #Page to display Add New Tour entry form
@@ -56,7 +56,7 @@ def add_tour():
         tour_data = {"tour_name": tour_name, "tour_slug": tour_slug, "tour_length": tour_length, "tour_country": tour_country, "tour_price": tour_price, "tour_description": tour_description, "tour_photo1": tour_photo1, "tour_photo2": tour_photo2,"tour_photo3": tour_photo3, "owner": session["email"]}
         tours.insert(tour_data)
         return redirect(url_for('index'))
-    return render_template('add-tour.html', form=form, page_title="Add New Tour")
+    return render_template('add-tour.html', form=form, page_title="Add New Tour", sticky_footer=True)
 
 
 #Function to delete existing tour, checks for session data before deleting
@@ -114,7 +114,7 @@ def update(tour_id):
 def tour(tour_slug):
     tours = database.db.tours
     tour = tours.find_one({"tour_slug":tour_slug})
-    return render_template('tour.html', tour=tour)
+    return render_template('tour.html', tour=tour, , sticky_footer=True)
 
 
 #Page to display user registration page, saves data to database, checks if exisitng email used already
@@ -136,7 +136,7 @@ def register():
             else:
                 flash('User with this email already exists. Try a different one', 'error')
                 return redirect(url_for('register'))
-    return render_template('register.html', page_title="Register to become one of our hosts", form=form, register_page=True)
+    return render_template('register.html', page_title="Register to become one of our hosts", form=form, register_page=True, sticky_footer=True)
 
 
 #Page to display login form, checks if email exists in database already, re-directs to Dashboard page
@@ -155,7 +155,7 @@ def login():
                 session["email"] = email
                 session["name"] = first_name
                 return redirect(url_for('dashboard'))
-    return render_template('login.html', page_title="Login to add, edit or remove your tours", form=form, login_page=True)
+    return render_template('login.html', page_title="Login to add, edit or remove your tours", form=form, login_page=True, sticky_footer=True)
 
 #Page to display logged in user tours
 @app.route('/dashboard')
@@ -164,7 +164,7 @@ def dashboard():
     if 'email' in session:
         owner = session["email"]
         user_tours = tours.find({"owner":owner})
-        return render_template('dashboard.html', page_title="TravelBuddy Host Dashboard", tours=user_tours)
+        return render_template('dashboard.html', page_title="TravelBuddy Host Dashboard", tours=user_tours, sticky_footer=True)
     else:
         return redirect(url_for('login'))
 
