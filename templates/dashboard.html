@@ -5,7 +5,7 @@
     <div class="col">
         <h1>Welcome</h1>
         {% if session["email"]: %}
-        <p>Hi {{ session["name"] }} </p>
+        <p>Hi {{ session["name"]|upper }} </p>
         <p>Below is the list of all your tours.</p>
         
         {% endif %}
@@ -19,7 +19,7 @@
                         <span>Price: €{{ tour["tour_price"] }}</span>
                         <span style="margin-left: 30px">Length: {{ tour["tour_length"] }} 
                             {% if tour['tour_length'] < 2:%} day {% else: %} days {% endif %}</span>
-                        <span style="margin-left: 30px">Location: {{ tour["tour_country"] }}
+                        <span style="margin-left: 30px">Location: {{ tour["tour_country"]|upper }}
                     </div>
                     <div class="float-right">
                         <a class="btn btn-success" href="{{ url_for('edit_tour', tour_id=tour._id) }}"
