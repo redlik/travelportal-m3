@@ -114,7 +114,7 @@ def update(tour_id):
 def tour(tour_slug):
     tours = database.db.tours
     tour = tours.find_one({"tour_slug":tour_slug})
-    return render_template('tour.html', tour=tour, , sticky_footer=True)
+    return render_template('tour.html', tour=tour, sticky_footer=True)
 
 
 #Page to display user registration page, saves data to database, checks if exisitng email used already
