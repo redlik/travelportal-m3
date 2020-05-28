@@ -34,7 +34,7 @@ def tours_location(country):
 #Tours page filtered by the tour length, launched using links on the sidebar
 @app.route('/tours/length/<length>-day')
 def tours_length(length):
-    tours_list = database.db.tours.find({"tour_length": length})
+    tours_list = database.db.tours.find({"tour_length": int(length)})
     return render_template('tours.html', page_title="Browse through the large selection of our tours", tours=tours_list, length=length, tours_page=True)
 
 
