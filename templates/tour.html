@@ -3,10 +3,11 @@
 {% block content %}
 <div class="row">
     <div class="col-12 col-lg-6 mb-4">
-        <h1 class="display-3 text-left script-heading">{{ tour["tour_name"] }}</h1>
-        <h5 class="text-muted text-light-font mb-3">{{ tour["tour_length"] }} Experience</h5>
-        <h3 class="text-light-font mb-4">€{{ tour["tour_price"] }} / person</h3>
-        <p>{{ tour["tour_description"] }}</p>
+        <h1 class="display-3 text-left script-heading">{{ tour['tour_name'] }}</h1>
+        <h5 class="text-muted text-light-font mb-3">{{ tour['tour_length'] }}-day Experience</h5>
+        <h5 class="text-muted text-light-font mb-3">Location: {{ tour['tour_country'] }}</h5>
+        <h3 class="text-light-font mb-4">€{{ tour['tour_price'] }} / person</h3>
+        <p>{{ tour['tour_description'] }}</p>
         <a href="#" role="button" class="btn btn-danger btn-lg">BOOK NOW</a>
 
 
@@ -16,17 +17,17 @@
 
     <!-- Photo Gallery -->
     <div class="col-12 col-lg-6">
-        <img src="https://source.unsplash.com/{{ tour["tour_photo1"] }}/1080x1080" class="img-fluid shadow  mb-4"
-            alt="London tour photo" />
+        <img src="https://source.unsplash.com/{{ tour['tour_photo1'] }}/1080x1080" class="img-fluid shadow  mb-4"
+            alt="{{ tour['tour_name'] }}" />
         <div class="container p-0">
             <div class="row">
                 <div class="col-12 col-lg-6 mb-4">
-                    <img src="https://source.unsplash.com/{{ tour["tour_photo2"] }}/540x360"
-                        class="img-fluid shadow" alt="London tour photo 2" />
+                    <img src="https://source.unsplash.com/{{ tour['tour_photo2'] }}/540x360"
+                        class="img-fluid shadow" alt="{{ tour['tour_name'] }}" />
                 </div>
                 <div class="col-12 col-lg-6">
-                    <img src="https://source.unsplash.com/{{ tour["tour_photo3"] }}/540x360"
-                        class="img-fluid shadow" alt="London tour photo 3" />
+                    <img src="https://source.unsplash.com/{{ tour['tour_photo3'] }}/540x360"
+                        class="img-fluid shadow" alt="{{ tour['tour_name'] }}" />
                 </div>
             </div>
         </div>

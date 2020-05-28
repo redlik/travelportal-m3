@@ -23,19 +23,20 @@
                 {% for single_tour in tours %}
                 <div class="item mb-4">
                     <div class="card shadow">
-                        <img src="https://source.unsplash.com/{{ single_tour["tour_photo1"] }}/253x160"
-                            class="card-img-top" alt="{{ single_tour["tour_name"]|lower }}">
+                        <img src="https://source.unsplash.com/{{ single_tour['tour_photo1'] }}/253x160"
+                            class="card-img-top" alt="{{ single_tour['tour_name']|lower }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ single_tour["tour_name"]}}</h5>
                             <h6 class="card-subtitle mb-2">{{ single_tour["tour_description"]|truncate(75) }}</h6>
-                            <a href="{{ url_for('tours_location', country=single_tour["tour_country"]) }}">
+                            <a href="{{ url_for('tours_location', country=single_tour['tour_country']) }}">
                                 <h6 class="card-subtitle my-2">{{ single_tour["tour_country"]|upper }}</h6>
                             </a>
-                            <p class="card-text"><a href="{{ url_for('tours_length', length=single_tour['tour_length']) }}">{{ single_tour["tour_length"] }} days
-                                    {# {% if int(single_tour["tour_length"]) < 2: %} day
+                            <p class="card-text"><a href="{{ url_for('tours_length', length=single_tour['tour_length']) }}">
+                                    {{ single_tour["tour_length"] }}
+                                    {% if int(single_tour["tour_length"]) < 2: %} day
                                     {% else: %}
-                                    days
-                                    {% endif %}</a> #}
+                                        days
+                                    {% endif %}</a>
                                         <br />
                                         From €{{ (single_tour["tour_price"]) }}/person</p>
                             <a href="{{ url_for('tour', tour_slug=single_tour['tour_slug']) }}"
