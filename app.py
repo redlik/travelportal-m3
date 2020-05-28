@@ -70,7 +70,7 @@ def add_tour():
             return redirect(url_for('dashboard'))
         else:
             flash('A tour with this name already exists, please modify the name')
-            return redirec(url_for('add_tour'))
+            return redirect(url_for('add_tour'))
     return render_template('add-tour.html', form=form, page_title="Add New Tour")
 
 
