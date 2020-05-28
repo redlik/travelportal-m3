@@ -7,7 +7,7 @@
         {% if session["email"]: %}
         <p>Hi {{ session["name"] }} </p>
         <p>Below is the list of all your tours.</p>
-        <a class="btn btn-primary" href="{{ url_for('add_tour') }}">Add New Tour</a>
+        
         {% endif %}
         <ul class="list-unstyled">
             {% for tour in tours %}
@@ -16,8 +16,10 @@
                 <div class="media-body">
                     <div class="float-left">
                         <h5 class="mt-0 mb-1">{{ tour["tour_name"] }}</h5>
-                        <span>Price: €{{ tour["tour_price"] }}</span><span style="margin-left: 30px">Length:
-                            {{ tour["tour_length"] }}</span>
+                        <span>Price: €{{ tour["tour_price"] }}</span>
+                        <span style="margin-left: 30px">Length: {{ tour["tour_length"] }} 
+                            {% if tour['tour_length'] < 2:%} day {% else: %} days {% endif %}</span>
+                        <span style="margin-left: 30px">Location: {{ tour["tour_country"] }}
                     </div>
                     <div class="float-right">
                         <a class="btn btn-success" href="{{ url_for('edit_tour', tour_id=tour._id) }}"
@@ -29,6 +31,9 @@
             </li>
             {% endfor %}
         </ul>
+        <div class="mt-4">
+            <a class="btn btn-primary" href="{{ url_for('add_tour') }}">Add New Tour</a>
+        </div>
     </div>
 </div>
 {% endblock %}
