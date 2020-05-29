@@ -55,7 +55,7 @@
             </p>
             <p>
                 {{ form.tour_price.label }}<br>
-                {{ form.tour_price(size=50, placeholder='Price', pattern=[0-9]) }}
+                {{ form.tour_price(size=50, placeholder='Price', pattern=[0-9]{5}) }}
             </p>
             <p>
                 {{ form.tour_description.label }}<br> {{ form.tour_description(rows='10',cols='50') }}
