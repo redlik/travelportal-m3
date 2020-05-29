@@ -89,7 +89,7 @@ def edit_tour(tour_id):
     if 'email' in session:
         if session['email'] == tour['owner']:    
             countries = database.db.countries.find()
-            tour_length = database.db.tour_length.find()
+            tour_length = database.db.tour_length.find().sort('tour_length')
             return render_template('edit-tour.html', page_title="Edit Tour", tour=tour, countries=countries, tour_length=tour_length)
     else:
         return redirect(url_for('login'))
