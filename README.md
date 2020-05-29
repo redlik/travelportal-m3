@@ -2,9 +2,14 @@
 For my third, Python based project, I’ve decided to expand the idea of a travel portal from my first milestone project. This time the site allows users to register themselves as tour providers and list their tours on a website.
 
 Live version of the app: [travelbuddy-app.herokuapp.com][1]
+
 ## UX
 The website serves 2 types of users, regular visitors who are looking for an organised tour in the area they are planning their vacations and people who provide organised tour experiences using their expertise and knowledge of their local area.
 
+### Wireframes
+- [Desktop homepage][2]
+- [Desktop Tours page][3]
+- [Mobile Tours page][4]
 ### User stories
 - I’d like the regular user to be welcomed with an eye-catchy hero image with short description of the website functionality
 - I’d like the regular user to have a quick look at the small selection of tours on the homepage
@@ -57,9 +62,12 @@ The local database has been transferred to a cloud account at MongoDB Atlas via 
 Once all elements were in place I could check if the app was working correctly or not. I’ve used Heroku command line tools to check the logs for any messages using  `heroku logs --tail` command. Every couple of times I had to reboot my app using `heroku restart` command to get my app running again.
 
 ## Feature upgrades
-For each tour, I've created a 'slug' property to have nice, SEO-ready link to each page, instead of just item's ID number. I've used slugify package that converts a tour name along with its length to create the link when clicked on "View Details" button on a card page. This pose a risk of tours having the same slug and only first one save being shown. For that reason I've created a check if a tour of the same name already exists. The check is being triggered when the form on "Add Tour" page is being submitted. The negative effect of this solution is that after "positive" result, meaning the tour name already exists, the function re-direct the user back to the form but all previous data is lost. It's not a great user experience and I would like to include some sort of data retention mechanism that would insert the data back into the form, even though it is not yet saved into the database.
+For each tour, I've created a 'slug' property to have nice, SEO-ready link to each page, instead of just item's ID number. I've used slugify package that converts a tour name along with its length to create the link when clicked on "View Details" button on a card page. This pose a risk of tours having the same slug and only first one queried being shown.  For that reason I had to modify my route to also include item’s ID number, which makes the final url not as elegant and also reveals the ID to unauthorised users, which I think should be avoided. I would like to come up with the solution to create a unique, SEO-friendly url for each item listed on the website.
 
 ## Development Issues
 The biggest issue I had working on this project was the Heroku deployment. My app was initially constructed with all files contained inside `application` folder with small `main.py`file calling the `app` object from inside that folder. While it did work no problem on a local computer, the app did crashed right away when deployed to Heroku. Unfortunately there was no particular error displayed in the log file, so there was no clear reason my app was crashing. I’ve followed tutors’ advice and merge all the Python files into one `app.py` file in the root folder and only then my app started to work as expected.
 
 [1]:	https://travelbuddy-app.herokuapp.com/
+[2]:	wireframes/home.png
+[3]:	wireframes/tours.png
+[4]:	wireframes/phone-tours.png
