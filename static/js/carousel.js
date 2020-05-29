@@ -3,7 +3,7 @@ $(document).ready(function() {
     $(".owl-carousel").owlCarousel({
     
     autoplay:true,
-    autoplayTimeout:3000,
+    autoplayTimeout:5000,
     autoplayHoverPause:true,
     items : 8,
     itemsDesktop : [1199,3],
@@ -11,6 +11,8 @@ $(document).ready(function() {
     center: false,
     nav:true,
     loop:true,
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
     responsive: {
       0:{ items:1 },
       600:{ items:3 },
