@@ -35,7 +35,7 @@
     <div class="col-md-3 sidebar d-sm-block d-md-none justify-content-center">
         <h5>View Tours by Country</h5>
         <nav class="nav justify-content-center">
-            <a class="nav-link px-1 {% if country =='france' %} active {% endif %}"
+            <a class="nav-link px-1 mx-1 {% if country =='france' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='france') }}">France</a>
             <a class="nav-link px-1 {% if country =='ireland' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='ireland') }}">Ireland</a>
@@ -51,11 +51,11 @@
         <hr>
         <h5>View by Tour Length</h5>
         <nav class="nav justify-content-center">
-            <a class="nav-link px-1" href="{{ url_for('tours_length', length=1) }}">1 Day</a>
-            <a class="nav-link px-1" href="{{ url_for('tours_length', length=2) }}">2 Days</a>
-            <a class="nav-link px-1" href="{{ url_for('tours_length', length=3) }}">3 Days</a>
-            <a class="nav-link px-1" href="{{ url_for('tours_length', length=5) }}">5 Days</a>
-            <a class="nav-link px-1" href="{{ url_for('tours_length', length=7) }}">7 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length=1 %} active" href="{{ url_for('tours_length', length=1) }}">1 Day</a>
+            <a class="nav-link px-1 mx-1 {% if length=2 %} active" href="{{ url_for('tours_length', length=2) }}">2 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length=3 %} active" href="{{ url_for('tours_length', length=3) }}">3 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length=4 %} active" href="{{ url_for('tours_length', length=5) }}">5 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length=5 %} active" href="{{ url_for('tours_length', length=7) }}">7 Days</a>
         </nav>
         <hr>
         <nav class="nav justify-content-center">
