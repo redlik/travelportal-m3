@@ -5,6 +5,8 @@ $(document).ready(function() {
     autoplay:true,
     autoplayTimeout:5000,
     autoplayHoverPause:true,
+    slideSpeed: 300,
+    paginationSpeed: 500,
     items : 8,
     itemsDesktop : [1199,3],
     itemsDesktopSmall : [979,3],
