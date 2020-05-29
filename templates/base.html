@@ -70,53 +70,6 @@
             {% endblock %}
         </div>
     </main>
-    {% if sticky_footer: %}
-    <footer class="footer-sticky">
-    {% else: %}
-    <footer class="footer">
-    {% endif %}    
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-3 col-sm-12 text-center text-md-left">
-                    <a href="index.html"><img src="{{ url_for('static', filename='images/tb-logo.svg') }}" height="30"
-                            alt="Footer logo" /></a>
-                </div>
-                <div class="col-md-9 col-sm-12 text-center text-lg-right">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a class="nav-link {% if home_page %} active {% endif %}"
-                                href="{{ url_for('index') }}">Home</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link {% if tours_page %} active {% endif %}"
-                                href="{{ url_for('tours') }}">Browse Tours</a>
-                        </li>
-                        {% if not session["email"] %}
-                        <li class="list-inline-item">
-                            <a class="nav-link {% if register_page %} active {% endif %}"
-                                href="{{ url_for('register') }}">Register</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link {% if login_page %} active {% endif %}"
-                                href="{{ url_for('login') }}">Login</a>
-                        </li>
-                        {% endif %}
-                        {% if session["email"]: %}
-                        <li class="list-inline-item">
-                            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link" href="{{ url_for('add_tour') }}">Add Tour</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

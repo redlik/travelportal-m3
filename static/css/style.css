@@ -78,6 +78,8 @@ a, .navbar-light .navbar-nav .nav-link {
   margin-top: 2rem;
 }
 
+/************* MOBILE LAYOUT **************/
+
 @media (max-width: 767.98px) {
   .logo-image {
     width: 15rem;
