@@ -4,6 +4,7 @@ For my third, Python based project, I’ve decided to expand the idea of a trave
 Live version of the app: [travelbuddy-app.herokuapp.com][1]
 ## UX
 The website serves 2 types of users, regular visitors who are looking for an organised tour in the area they are planning their vacations and people who provide organised tour experiences using their expertise and knowledge of their local area.
+
 ### User stories
 - I’d like the regular user to be welcomed with an eye-catchy hero image with short description of the website functionality
 - I’d like the regular user to have a quick look at the small selection of tours on the homepage
@@ -15,11 +16,13 @@ For the tour providers:
 - I’d like them to create a new account
 - I’d like them to add new tours using dedicated form
 - I’d like them to see all of their tours on a Dashboard page, where they can edit or delete existing tours
+
 ### Features
 - The site presents the data - tours - using Bootstrap’s card component. This allows for clean and universal presentation of data and make the layout behave correctly on different devices
 - The site allows to create user accounts and add tours by registered users
 - The site presents registered users with list of their tours and allows them to add, edit or delete operations
 - The site prevents the data to be altered or deleted by non-authorised users by checking the login status and login credentials
+
 ## Technology used
 - HTML, CSS for data presentation 
 - Bootstrap CSS framework 
@@ -28,6 +31,7 @@ For the tour providers:
 - Python used for back-end logic
 - Flask web framework used to create web pages and communicate with database
 - MongoDB - NoSQL database system used to store users and tours data
+
 ## Testing
 The site was tested in 2 ways. First, I’ve test the presentation layer. Site was previewed on selection of different devices - desktop, laptop, iPad, couple of smartphones - to make sure there’s no issues with responsive layout. I’ve also checked the site with HTML and CSS validators to fix some small issues.
 Next, I’ve tested the app logic. I’ve started with some manual testing - creating new account, re-using the same email to see if the app will reject it. I’ve tested the navigation menu whether it re-directs to correct routes and correct templates are displayed.
@@ -35,6 +39,7 @@ Next, I’ve tested the app logic. I’ve started with some manual testing - cre
 After that, I’ve  logged in and added a new tour.  All the fields were correctly saved in the database. Each tour provider has the access to the Dashboard page which lists their own tours. I’ve tested couple of sample logins to make sure they only see their own data. I’ve also protected the page from un-authorised access. If no user is logged in - the page re-directs to login page automatically. Dashboard page allows to edit or delete owner’s tours. I’ve tested whether both buttons function properly and display or delete only one and correct item. I’ve used tour’s `_id` field because of its uniqueness. No other tour can share the same id number.  Item selected for editing display its data inside HTML form. I’ve tested if the data is correctly loaded and after some changes saved back into the database as expected.
 
 After that I’ve tested if the data can be altered or deleted without the proper access credentials, meaning only by the user associated with the tour. By using Flask’s `session` module I was able to detect if and which user is logged in so I could protect both edit and delete operations to be only performed on data a user has the rights to. If no user is logged in or different user is trying to delete other people’s items the function prevents this and displays appropriate message.
+
 ## Deployment
 The site was originally created on a local machine and pushed to remote repository at GitHub. During the development the application was run locally using Python’s virtual environment and a local copy of MongoDB database via Compass app. 
 
@@ -50,6 +55,9 @@ The last element were the configuration variables, which store sensitive informa
 
 The local database has been transferred to a cloud account at MongoDB Atlas via `JSON` files. I’ve kept the same names of collections so I only had to change the link to the database from localhost to remote server at MongoDB Atlas.
 Once all elements were in place I could check if the app was working correctly or not. I’ve used Heroku command line tools to check the logs for any messages using  `heroku logs --tail` command. Every couple of times I had to reboot my app using `heroku restart` command to get my app running again.
+
+## Feature upgrades
+For each tour, I've created a 'slug' property to have nice, SEO-ready link to each page, instead of just item's ID number. I've used slugify package that converts a tour name along with its length to create the link when clicked on "View Details" button on a card page. This pose a risk of tours having the same slug and only first one save being shown. For that reason I've created a check if a tour of the same name already exists. The check is being triggered when the form on "Add Tour" page is being submitted. The negative effect of this solution is that after "positive" result, meaning the tour name already exists, the function re-direct the user back to the form but all previous data is lost. It's not a great user experience and I would like to include some sort of data retention mechanism that would insert the data back into the form, even though it is not yet saved into the database.
 
 ## Development Issues
 The biggest issue I had working on this project was the Heroku deployment. My app was initially constructed with all files contained inside `application` folder with small `main.py`file calling the `app` object from inside that folder. While it did work no problem on a local computer, the app did crashed right away when deployed to Heroku. Unfortunately there was no particular error displayed in the log file, so there was no clear reason my app was crashing. I’ve followed tutors’ advice and merge all the Python files into one `app.py` file in the root folder and only then my app started to work as expected.
