@@ -6,7 +6,9 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #858796;
+  padding-bottom: 30px;
 }
+
 .dashboard-row {
   padding: 15px;
 }
