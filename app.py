@@ -125,11 +125,11 @@ def update(tour_id):
         return redirect(url_for('dashboard'))
 
 #Page to display individual tours, uses slugify to create nice urls of each tour
-@app.route('/tour/<tour_slug>')
-def tour(tour_slug):
+@app.route('/tour/<tour_id>/<tour_slug>')
+def tour(tour_id, tour_slug):
     tours = database.db.tours
-    tour = tours.find_one({"tour_slug":tour_slug})
-    return render_template('tour.html', tour=tour, sticky_footer=True)
+    existing_tour = tours.find_one({'_id': ObjectId(tour_id)})
+    return render_template('tour.html', tour=existing_tour, sticky_footer=True)
 
 
 #Page to display user registration page, saves data to database, checks if exisitng email used already

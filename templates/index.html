@@ -40,7 +40,7 @@
                                     {% endif %}</a>
                                 <br />
                                 From €{{ (single_tour['tour_price']) }}/person</p>
-                            <a href="{{ url_for('tour', tour_slug=single_tour['tour_slug']) }}"
+                            <a href="{{ url_for('tour', tour_id=single_tour['_id'], tour_slug=single_tour['tour_slug']) }}"
                                 class="btn btn-primary">View Details</a>
                         </div>
                     </div>
