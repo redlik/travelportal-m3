@@ -8,22 +8,22 @@
             <ul class="errors">
             {% if form.tour_price.errors %}
                 {% for error in form.tour_price.errors %}
-                <li>{{ error }}</li>
+                <li class="price_errors">{{ error }}</li>
                 {% endfor %}
             {% endif %}    
             {% if form.tour_photo1.errors %}
                 {% for error in form.tour_photo1.errors %}
-                <li>{{ error }}</li>
+                <li class="photo_errors">{{ error }}</li>
                 {% endfor %}
             {% endif %}    
             {% if form.tour_photo2.errors %}
                 {% for error in form.tour_photo2.errors %}
-                <li>{{ error }}</li>
+                <li class="photo_errors">{{ error }}</li>
                 {% endfor %}
             {% endif %}    
             {% if form.tour_photo3.errors %}
                 {% for error in form.tour_photo3.errors %}
-                <li>{{ error }}</li>
+                <li class="photo_errors">{{ error }}</li>
                 {% endfor %}
             {% endif %}    
             </ul>
