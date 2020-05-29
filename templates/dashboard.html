@@ -5,7 +5,7 @@
     <div class="col">
         <h1>Welcome</h1>
         {% if session["email"]: %}
-        <p>Hi {{ session["name"]|upper }} </p>
+        <h5>Hi {{ session["name"]|capitalize }} </h5>
         <p>Below is the list of all your tours.</p>
         
         {% endif %}
