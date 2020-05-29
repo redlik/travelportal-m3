@@ -5,12 +5,7 @@
     <div class="col-md-6 offset-md-3">
         <h1>Add New Tour</h1>
         <div class="mt-4">
-            <ul class="errors">
-            {% if form.tour_price.errors %}
-                {% for error in form.tour_price.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            {% endif %}    
+            <ul class="errors">   
             {% if form.tour_photo1.errors %}
                 {% for error in form.tour_photo1.errors %}
                 <li>{{ error }}</li>
