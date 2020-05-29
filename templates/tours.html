@@ -32,7 +32,7 @@
             <a class="nav-link" href="{{ url_for('tours') }}">View All</a>
         </nav>
     </div>
-    <div class="col-md-3 sidebar d-none d-sm-block d-md-none">
+    <div class="col-md-3 sidebar d-sm-block d-md-none justify-content-center">
         <h5>View Tours by Country</h5>
         <nav class="nav justify-content-center">
             <a class="nav-link px-1 {% if country =='france' %} active {% endif %}"
@@ -51,11 +51,11 @@
         <hr>
         <h5>View by Tour Length</h5>
         <nav class="nav justify-content-center">
-            <a class="nav-link" href="{{ url_for('tours_length', length=1) }}">1 Day Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=2) }}">2 Days Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=3) }}">3 Days Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=5) }}">5 Days Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=7) }}">7 Days Tours</a>
+            <a class="nav-link px-1 " href="{{ url_for('tours_length', length=1) }}">1 Day Tours</a>
+            <a class="nav-link px-1 " href="{{ url_for('tours_length', length=2) }}">2 Days Tours</a>
+            <a class="nav-link px-1 " href="{{ url_for('tours_length', length=3) }}">3 Days Tours</a>
+            <a class="nav-link px-1 " href="{{ url_for('tours_length', length=5) }}">5 Days Tours</a>
+            <a class="nav-link px-1 " href="{{ url_for('tours_length', length=7) }}">7 Days Tours</a>
         </nav>
         <hr>
         <nav class="nav justify-content-center">
