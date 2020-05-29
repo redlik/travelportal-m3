@@ -45,7 +45,7 @@
         <form name="tours" action="" method="POST">
             {{ form.hidden_tag() }}
             <p>
-                {{ form.tour_name.label }}<br> {{ form.tour_name(size=35, placeholder="Tour Name") }}
+                {{ form.tour_name.label }}<br> {{ form.tour_name(size=50, placeholder="Tour Name") }}
             </p>
             <p>
                 {{ form.tour_length.label }}<br> {{ form.tour_length(placeholder='Select Length')}}
@@ -55,10 +55,10 @@
             </p>
             <p>
                 {{ form.tour_price.label }}<br>
-                {{ form.tour_price(size=35, placeholder='Price') }}
+                {{ form.tour_price(size=50, placeholder='Price', pattern=[0-9]) }}
             </p>
             <p>
-                {{ form.tour_description.label }}<br> {{ form.tour_description(rows='10',cols='35') }}
+                {{ form.tour_description.label }}<br> {{ form.tour_description(rows='10',cols='50') }}
             </p>
             <div class="bg-light p-2">
                 <h5>Tour photos</h5>
