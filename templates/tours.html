@@ -21,11 +21,11 @@
         <hr>
         <h5>View by Tour Length</h5>
         <nav class="nav flex-column">
-            <a class="nav-link" href="{{ url_for('tours_length', length=1) }}">1 Day Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=2) }}">2 Days Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=3) }}">3 Days Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=5) }}">5 Days Tours</a>
-            <a class="nav-link" href="{{ url_for('tours_length', length=7) }}">7 Days Tours</a>
+            <a class="nav-link {% if length=='1' %} active {% endif %}" href="{{ url_for('tours_length', length=1) }}">1 Day Tours</a>
+            <a class="nav-link {% if length=='2' %} active {% endif %}" href="{{ url_for('tours_length', length=2) }}">2 Days Tours</a>
+            <a class="nav-link {% if length=='3' %} active {% endif %}" href="{{ url_for('tours_length', length=3) }}">3 Days Tours</a>
+            <a class="nav-link {% if length=='5' %} active {% endif %}" href="{{ url_for('tours_length', length=5) }}">5 Days Tours</a>
+            <a class="nav-link {% if length=='7' %} active {% endif %}" href="{{ url_for('tours_length', length=7) }}">7 Days Tours</a>
         </nav>
         <hr>
         <nav class="nav flex-column">
