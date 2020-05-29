@@ -7,7 +7,7 @@ $(document).ready(function() {
     autoplayHoverPause:true,
     slideSpeed: 300,
     paginationSpeed: 500,
-    items : 8,
+    items : 99,
     itemsDesktop : [1199,3],
     itemsDesktopSmall : [979,3],
     center: false,
