@@ -32,20 +32,20 @@
             <a class="nav-link" href="{{ url_for('tours') }}">View All</a>
         </nav>
     </div>
-    <div class="col-md-3 sidebar .d-none .d-sm-block .d-md-none">
+    <div class="col-md-3 sidebar d-none d-sm-block d-md-none">
         <h5>View Tours by Country</h5>
         <nav class="nav justify-content-center">
-            <a class="nav-link {% if country =='france' %} active {% endif %}"
+            <a class="nav-link px-1 {% if country =='france' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='france') }}">France</a>
-            <a class="nav-link {% if country =='ireland' %} active {% endif %}"
+            <a class="nav-link px-1 {% if country =='ireland' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='ireland') }}">Ireland</a>
-            <a class="nav-link {% if country =='italy' %} active {% endif %}"
+            <a class="nav-link px-1 {% if country =='italy' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='italy') }}">Italy</a>
-            <a class="nav-link {% if country =='spain' %} active {% endif %}"
+            <a class="nav-link px-1 {% if country =='spain' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='spain') }}">Spain</a>
-            <a class="nav-link {% if country =='uk' %} active {% endif %}"
+            <a class="nav-link px-1 {% if country =='uk' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='uk') }}">England</a>
-            <a class="nav-link {% if country =='us' %} active {% endif %}"
+            <a class="nav-link px-1 {% if country =='us' %} active {% endif %}"
                 href="{{ url_for('tours_location', country='us') }}">United States</a>
         </nav>
         <hr>
@@ -58,7 +58,7 @@
             <a class="nav-link" href="{{ url_for('tours_length', length=7) }}">7 Days Tours</a>
         </nav>
         <hr>
-        <nav class="nav flex-column">
+        <nav class="nav justify-content-center">
             <a class="nav-link" href="{{ url_for('tours') }}">View All</a>
         </nav>
     </div>
