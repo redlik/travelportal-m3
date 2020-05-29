@@ -6,6 +6,11 @@
         <h1>Add New Tour</h1>
         <div class="mt-4">
             <ul class="errors">
+            {% if form.tour_price.errors %}
+                {% for error in form.tour_price.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            {% endif %}    
             {% if form.tour_photo1.errors %}
                 {% for error in form.tour_photo1.errors %}
                 <li>{{ error }}</li>
@@ -50,7 +55,7 @@
             </p>
             <p>
                 {{ form.tour_price.label }}<br>
-                {{ form.tour_price(size=35, placeholder='Insert figure only, no need for currency symbol') }}
+                {{ form.tour_price(size=35, placeholder='Price') }}
             </p>
             <p>
                 {{ form.tour_description.label }}<br> {{ form.tour_description(rows='10',cols='35') }}
