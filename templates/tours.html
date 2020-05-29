@@ -51,11 +51,11 @@
         <hr>
         <h5>View by Tour Length</h5>
         <nav class="nav justify-content-center">
-            <a class="nav-link px-1 mx-1 {% if length==1 %} active" href="{{ url_for('tours_length', length=1) }}">1 Day</a>
-            <a class="nav-link px-1 mx-1 {% if length==2 %} active" href="{{ url_for('tours_length', length=2) }}">2 Days</a>
-            <a class="nav-link px-1 mx-1 {% if length==3 %} active" href="{{ url_for('tours_length', length=3) }}">3 Days</a>
-            <a class="nav-link px-1 mx-1 {% if length==4 %} active" href="{{ url_for('tours_length', length=5) }}">5 Days</a>
-            <a class="nav-link px-1 mx-1 {% if length==5 %} active" href="{{ url_for('tours_length', length=7) }}">7 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length==1 %} active {% endif %}" href="{{ url_for('tours_length', length=1) }}">1 Day</a>
+            <a class="nav-link px-1 mx-1 {% if length==2 %} active {% endif %}" href="{{ url_for('tours_length', length=2) }}">2 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length==3 %} active {% endif %}" href="{{ url_for('tours_length', length=3) }}">3 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length==4 %} active {% endif %}" href="{{ url_for('tours_length', length=5) }}">5 Days</a>
+            <a class="nav-link px-1 mx-1 {% if length==5 %} active {% endif %}" href="{{ url_for('tours_length', length=7) }}">7 Days</a>
         </nav>
         <hr>
         <nav class="nav justify-content-center">
